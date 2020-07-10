@@ -15,7 +15,8 @@
 #import "BraintreeApplePay.h"
 #import "BraintreeCard.h"
 #import "BraintreeUI.h"
-#import "Braintree3DSecure.h"
+// added
+#import "BraintreePaymentFlow.h"
 #import "BTDataCollector.h"
 #import "PPDataCollector.h"
 
@@ -24,7 +25,9 @@
 @interface RCTBraintree : UIViewController <RCTBridgeModule, BTDropInViewControllerDelegate, BTViewControllerPresentingDelegate, PKPaymentAuthorizationViewControllerDelegate>
 
 @property (nonatomic, strong) BTAPIClient *braintreeClient;
-@property (nonatomic, strong, readwrite) BTThreeDSecureDriver *threeDSecure;
+@property (nonatomic, strong, readwrite) BTPaymentFlowDriver *paymentFlowDriver; // added
+
+
 @property (nonatomic, strong) UIViewController *reactRoot;
 @property (nonatomic, strong) BTDataCollector *dataCollector;
 
@@ -36,6 +39,6 @@
 @property (nonatomic, strong) NSDictionary *threeDSecureOptions;
 
 + (instancetype)sharedInstance;
-- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url;
+- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url options:(NSDictionary<UIApplicationOpenURLOptionsKey, id> *)options; // modified
 
 @end
